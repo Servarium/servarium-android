@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Servarium</string>
+    <string name="email_text_field">Почта</string>
 </resources>
