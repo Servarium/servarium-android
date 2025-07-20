@@ -12,4 +12,6 @@ sealed class Route {
             const val POST_ID = "postId"
         }
     }
+    object Login : Route() { val route = "login" }
+    object Registration : Route() { val route = "registration" }
 }

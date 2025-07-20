@@ -2,6 +2,7 @@ package it.android.servarium.presentation.screens.main.components
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -45,8 +46,11 @@ fun PcCard(
                 }
                 else -> false
             }
-        }
+        },
+        positionalThreshold = { it * 0.3f }
     )
+
+
 
     LaunchedEffect(isDeleted) {
         if (!isDeleted) {
@@ -76,10 +80,11 @@ fun PcCard(
 private fun DismissBackground(dismissState: SwipeToDismissBoxState) {
     val direction = dismissState.dismissDirection
     val color by animateColorAsState(
-        when (dismissState.targetValue) {
+        targetValue = when (dismissState.targetValue) {
             SwipeToDismissBoxValue.EndToStart -> MaterialTheme.colorScheme.error
             else -> Color.Transparent
         },
+        animationSpec = tween(durationMillis = 600),
         label = "background_color"
     )
     val alignment = when (direction) {
@@ -91,7 +96,8 @@ private fun DismissBackground(dismissState: SwipeToDismissBoxState) {
         else -> Icons.Default.Delete
     }
     val scale by animateFloatAsState(
-        if (dismissState.targetValue == SwipeToDismissBoxValue.EndToStart) 1.3f else 0.75f,
+        targetValue = if (dismissState.targetValue == SwipeToDismissBoxValue.EndToStart) 1.3f else 0.75f,
+        animationSpec = tween(durationMillis = 600),
         label = "icon_scale"
     )
 
