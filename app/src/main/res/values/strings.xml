@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Servarium</string>
+
+    <string name="app_logo_description">Иконка приложения</string>
+
     <string name="email_text_field">Почта</string>
+    <string name="password_text_field">Пароль</string>
+
+    <string name="hide_password_description">Скрыть пароль</string>
+    <string name="show_password_description">Скрыть пароль</string>
 </resources>

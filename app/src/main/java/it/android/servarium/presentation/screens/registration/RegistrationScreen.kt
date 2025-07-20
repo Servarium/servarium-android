@@ -65,7 +65,7 @@ fun RegisterScreen(
                 contentAlignment = Alignment.Center,
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.icon),
+                    painter = painterResource(id = R.drawable.logo_app),
                     contentDescription = "Сервер",
                     contentScale = ContentScale.FillWidth,
                     modifier = Modifier.size(300.dp)
