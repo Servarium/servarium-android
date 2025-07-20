@@ -1,6 +1,14 @@
 package it.android.servarium.presentation.ui.theme
 import androidx.compose.ui.graphics.Color
 
+
+val DarkCPU = Color(0xFFEF4444)
+val DarkRAM = Color(0xFFA855F7)
+val DarkDISK = Color(0xFFF97316)
+val DarkNETWORK = Color(0xFF3B82F6)
+val DarkDOCKER = Color(0xFF3B82F6)
+val DarkPROCESSES = Color(0xFF8F8F8F)
+
 val primaryLight = Color(0xFF555A92)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFFE0E0FF)

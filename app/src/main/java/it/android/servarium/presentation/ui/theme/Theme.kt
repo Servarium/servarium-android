@@ -253,7 +253,6 @@ val unspecified_scheme = ColorFamily(
 
 @Composable
 fun ServariumTheme(
-    // Dynamic color is available on Android 12+
     content: @Composable() () -> Unit
 ) {
 
