@@ -5,7 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import it.android.servarium.presentation.screens.login.AuthScreen
+import it.android.servarium.presentation.screens.auth.login.LoginScreen
+import it.android.servarium.presentation.screens.auth.registration.RegistrationScreen
 
 @Composable
 fun AppNavigationGraph(
@@ -14,16 +15,30 @@ fun AppNavigationGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Route.AuthScreen().route,
+        startDestination = Route.LoginScreen().route,
         modifier = modifier
     ) {
+        // Login Screen
         composable(
-            route = Route.AuthScreen().route
+            route = Route.LoginScreen().route
         ) {
-            AuthScreen(
+            LoginScreen(
                 modifier = modifier,
                 onLoginClick = {},
-                onRegisterClick = {}
+                onRegisterClick = {
+                    navController.navigate(Route.RegistrationScreen().route)
+                }
+            )
+        }
+
+        // RegistrationScreen
+        composable(
+            route = Route.RegistrationScreen().route
+        ) {
+            RegistrationScreen(
+                modifier = modifier,
+                onRegisterClick = { navController.popBackStack() },
+                onBackClick = { navController.popBackStack() }
             )
         }
     }

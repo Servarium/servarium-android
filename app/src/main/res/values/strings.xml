@@ -5,9 +5,13 @@
 
     <string name="email_text_field">Почта</string>
     <string name="password_text_field">Пароль</string>
+    <string name="repeat_password_text_field">Повторите пароль</string>
 
     <string name="login">Войти</string>
     <string name="registration">Регистрация</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="back">Назад</string>
+
     <string name="hide_password_description">Скрыть пароль</string>
     <string name="show_password_description">Показать пароль</string>
 </resources>
