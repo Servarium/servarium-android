@@ -1,23 +1,23 @@
 [versions]
 agp = "8.11.1"
 constraintlayoutCompose = "1.1.1"
-kotlin = "2.0.0"
-coreKtx = "1.15.0"
+kotlin = "2.2.0"
+coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.7"
+lifecycleRuntimeKtx = "2.9.2"
 activityCompose = "1.10.1"
-composeBom = "2024.04.01"
+composeBom = "2025.07.00"
 
 # Добавленные зависимости для логики и работы с сетью
-retrofit2Version = "2.11.0"
-okhttp3Version = "4.9.3"
-hiltVersion = "2.51.1"
+retrofit2Version = "3.0.0"
+okhttp3Version = "5.1.0"
+hiltVersion = "2.57"
 hiltNavigationComposeVersion = "1.2.0"
-coroutinesVersion = "1.10.1"
-coroutinesLifecycleVersion = "2.8.7"
-navigationCompose = "2.8.8"
+coroutinesVersion = "1.10.2"
+coroutinesLifecycleVersion = "2.9.2"
+navigationCompose = "2.9.2"
 constraintlayout = "2.2.1"
 
 [libraries]
