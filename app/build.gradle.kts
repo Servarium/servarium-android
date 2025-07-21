@@ -2,16 +2,20 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    // Настройка плагинов для Hilt
+    alias(libs.plugins.hiltAndroid)
+    alias(libs.plugins.kotlinKapt)
 }
 
 android {
     namespace = "it.android.servarium"
-    compileSdk = 36
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "it.android.servarium"
-        minSdk = 30
-        targetSdk = 36
+        minSdk = 24
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -49,6 +53,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,4 +62,31 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Hilt
+    implementation(libs.hilt)
+    implementation(libs.hiltNavigationCompose)
+    kapt(libs.hiltCompiler)
+
+    // Retrofit
+    implementation(libs.retrofit2)
+    implementation(libs.retrofit2GsonConverter)
+
+    //OkHttp
+    implementation(libs.okhttp3)
+    implementation(libs.okhttp3Logging)
+
+    //Coroutines
+    implementation(libs.coroutinesCore)
+    implementation(libs.coroutinesAndroid)
+
+    //Coroutine Lifecycle Scopes
+    implementation(libs.lifecycleViewModel)
+
+    //Navigation
+    implementation(libs.navigationCompose)
+}
+
+kapt {
+    correctErrorTypes = true
 }
