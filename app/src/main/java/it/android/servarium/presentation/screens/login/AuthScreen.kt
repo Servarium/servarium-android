@@ -12,9 +12,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -25,7 +26,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -35,9 +35,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -56,21 +58,20 @@ fun AuthScreen(
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
-    val scrollState = rememberScrollState()
 
-    Box(
+    Column(
         modifier = modifier
-            .fillMaxSize()
-            .imePadding()
+            .verticalScroll(rememberScrollState())
+            .imePadding(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween,
     ) {
+
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 50.dp)
-                .verticalScroll(scrollState),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.wrapContentSize()
         ) {
+            Spacer(modifier = Modifier.height(50.dp))
+
             Box(
                 modifier = Modifier
                     .size(300.dp)
@@ -85,101 +86,102 @@ fun AuthScreen(
                 )
             }
 
-            Column(
+            Spacer(modifier = Modifier.height(30.dp))
+        }
+
+        Column(
+            modifier = Modifier.width(300.dp),
+            verticalArrangement = Arrangement.spacedBy(22.dp)
+        ) {
+            OutlinedTextField(
+                value = email.value,
+                onValueChange = { email.value = it },
+                label = { Text(stringResource(R.string.email_text_field)) },
+                shape = MaterialTheme.shapes.small,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 modifier = Modifier
-                    .width(300.dp),
-                verticalArrangement = Arrangement.spacedBy(22.dp)
+                    .fillMaxWidth()
+                    .height(60.dp)
+            )
+
+            OutlinedTextField(
+                value = password.value,
+                onValueChange = { password.value = it },
+                label = { Text(stringResource(R.string.password_text_field)) },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                shape = MaterialTheme.shapes.small,
+                visualTransformation =
+                    if (passwordVisible) VisualTransformation.None
+                    else PasswordVisualTransformation(),
+                trailingIcon = {
+                    val vector =
+                        if (passwordVisible) R.drawable.ic_eye_off
+                        else R.drawable.ic_eye
+
+                    val content =
+                        if (passwordVisible) R.string.hide_password_description
+                        else R.string.show_password_description
+
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(
+                            imageVector = ImageVector.vectorResource(vector),
+                            contentDescription = stringResource(content)
+                        )
+                    }
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Button(
+                onClick = onLoginClick,
+                shape = MaterialTheme.shapes.small,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
             ) {
-                OutlinedTextField(
-                    value = email.value,
-                    onValueChange = { email.value = it },
-                    label = { Text(stringResource(R.string.email_text_field)) },
-                    shape = MaterialTheme.shapes.small,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                    modifier = Modifier
-                        .width(300.dp)
-                        .height(60.dp)
+                Text(
+                    text = "Войти",
+                    fontSize = 16.sp
                 )
-
-                OutlinedTextField(
-                    value = password.value,
-                    onValueChange = { password.value = it },
-                    label = { Text(stringResource(R.string.password_text_field)) },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                    shape = MaterialTheme.shapes.small,
-                    visualTransformation =
-                        if (passwordVisible) VisualTransformation.None
-                        else PasswordVisualTransformation(),
-                    trailingIcon = {
-                        val painter =
-                            if (passwordVisible) painterResource(R.drawable.ic_eye_off)
-                            else painterResource(R.drawable.ic_eye)
-
-                        val contentDescription =
-                            if (passwordVisible) stringResource(R.string.hide_password_description)
-                            else stringResource(R.string.show_password_description)
-
-                        IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                            Icon(
-                                painter = painter,
-                                contentDescription = contentDescription
-                            )
-                        }
-                    },
-                    modifier = Modifier
-                        .width(300.dp)
-                        .height(60.dp)
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Button(
-                    onClick = onLoginClick,
-                    shape = MaterialTheme.shapes.small,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
-                ) {
-                    Text(
-                        text = "Войти",
-                        fontSize = 16.sp
-                    )
-                }
-
-                OutlinedButton(
-                    onClick = onRegisterClick,
-                    shape = MaterialTheme.shapes.small,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
-                ) {
-                    Text(
-                        text = "Регистрация",
-                        fontSize = 16.sp
-                    )
-                }
             }
+
+            OutlinedButton(
+                onClick = onRegisterClick,
+                shape = MaterialTheme.shapes.small,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+            ) {
+                Text(
+                    text = "Регистрация",
+                    fontSize = 16.sp
+                )
+            }
+
+            Spacer(modifier = Modifier.height(18.dp))
         }
     }
 }
 
 @Preview(
-    showBackground = true, showSystemUi = true,
-    uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
+    showSystemUi = true,
+    uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL, apiLevel = 35,
+    backgroundColor = 0xFF0E0E13,
+    showBackground = true
 )
 @Composable
 fun PreviewAuthScreen() {
     ServariumTheme {
-        Scaffold(
-            modifier = Modifier.fillMaxSize()
-        ) { innerPadding ->
-            AuthScreen(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
-                onLoginClick = {},
-                onRegisterClick = {}
-            )
-        }
+        AuthScreen(
+            modifier = Modifier
+                .safeDrawingPadding()
+                .fillMaxSize(),
+            onLoginClick = {},
+            onRegisterClick = {}
+        )
     }
 }

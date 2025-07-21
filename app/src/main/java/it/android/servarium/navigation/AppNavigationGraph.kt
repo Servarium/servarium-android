@@ -1,6 +1,5 @@
 package it.android.servarium.navigation
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -16,7 +15,7 @@ fun AppNavigationGraph(
     NavHost(
         navController = navController,
         startDestination = Route.AuthScreen().route,
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
     ) {
         composable(
             route = Route.AuthScreen().route
