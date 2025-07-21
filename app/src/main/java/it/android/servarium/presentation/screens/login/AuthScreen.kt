@@ -26,6 +26,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -40,6 +41,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -98,7 +100,10 @@ fun AuthScreen(
                 onValueChange = { email.value = it },
                 label = { Text(stringResource(R.string.email_text_field)) },
                 shape = MaterialTheme.shapes.small,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Next,
+                    keyboardType = KeyboardType.Email
+                ),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp)
@@ -108,7 +113,10 @@ fun AuthScreen(
                 value = password.value,
                 onValueChange = { password.value = it },
                 label = { Text(stringResource(R.string.password_text_field)) },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Done,
+                    keyboardType = KeyboardType.Password
+                ),
                 shape = MaterialTheme.shapes.small,
                 visualTransformation =
                     if (passwordVisible) VisualTransformation.None
@@ -144,7 +152,7 @@ fun AuthScreen(
                     .height(50.dp)
             ) {
                 Text(
-                    text = "Войти",
+                    text = stringResource(R.string.login),
                     fontSize = 16.sp
                 )
             }
@@ -157,7 +165,7 @@ fun AuthScreen(
                     .height(50.dp)
             ) {
                 Text(
-                    text = "Регистрация",
+                    text = stringResource(R.string.registration),
                     fontSize = 16.sp
                 )
             }
@@ -169,19 +177,23 @@ fun AuthScreen(
 
 @Preview(
     showSystemUi = true,
-    uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL, apiLevel = 35,
-    backgroundColor = 0xFF0E0E13,
-    showBackground = true
+    uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
 )
 @Composable
 fun PreviewAuthScreen() {
     ServariumTheme {
-        AuthScreen(
+        Surface(
             modifier = Modifier
-                .safeDrawingPadding()
                 .fillMaxSize(),
-            onLoginClick = {},
-            onRegisterClick = {}
-        )
+            color = MaterialTheme.colorScheme.surfaceContainerLowest
+        ) {
+            AuthScreen(
+                modifier = Modifier
+                    .safeDrawingPadding()
+                    .fillMaxSize(),
+                onLoginClick = {},
+                onRegisterClick = {}
+            )
+        }
     }
 }
