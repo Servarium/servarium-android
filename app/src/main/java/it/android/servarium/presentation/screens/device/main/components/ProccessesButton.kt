@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import it.android.servarium.R
@@ -31,7 +32,6 @@ fun ProcessesButton(
         shape = RoundedCornerShape(12.dp)
     ) {
         Row {
-            // Цветная полоска слева
             Box(
 
                 modifier = Modifier
@@ -58,7 +58,7 @@ fun ProcessesButton(
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Text(
-                    text = "Процессы",
+                    text = stringResource(R.string.metrics_card_label_processes),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface

@@ -9,19 +9,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import it.android.servarium.R
 import it.android.servarium.presentation.ui.theme.outlineVariantDark
 
-// Data класс для Disk данных
 data class DiskData(
     val usage: Int,
     val usedGB: Int,
     val totalGB: Int
 )
 
-// Диск карточка компонент
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DiskCard(
@@ -38,7 +37,6 @@ fun DiskCard(
         shape = RoundedCornerShape(12.dp)
     ) {
         Row {
-            // Цветная полоска слева
             Box(
                 modifier = Modifier
                     .width(5.dp)
@@ -67,7 +65,7 @@ fun DiskCard(
 
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Системный диск",
+                            text = stringResource(R.string.metrics_card_label_disk),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface

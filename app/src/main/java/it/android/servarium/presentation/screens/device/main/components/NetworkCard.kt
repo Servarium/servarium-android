@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import it.android.servarium.R
@@ -19,7 +20,6 @@ data class NetworkData(
     val ipAddress: String
 )
 
-// Сеть карточка компонент
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NetworkCard(
@@ -35,7 +35,6 @@ fun NetworkCard(
         shape = RoundedCornerShape(12.dp)
     ) {
         Row {
-            // Цветная полоска слева
             Box(
                 modifier = Modifier
                     .width(5.dp)
@@ -61,7 +60,7 @@ fun NetworkCard(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Сеть",
+                        text = stringResource(R.string.metrics_card_label_network),
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface

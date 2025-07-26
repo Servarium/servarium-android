@@ -1,23 +1,35 @@
 package it.android.servarium.presentation.screens.device.main.components
 
 
-import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import it.android.servarium.R
-import it.android.servarium.presentation.screens.device.main.DeviceMainScreen
-import it.android.servarium.presentation.ui.theme.ServariumTheme
 import it.android.servarium.presentation.ui.theme.outlineVariantDark
 
 // Цвета для категорий
@@ -30,13 +42,11 @@ object CategoryColors {
     val PROCESSES = Color(0xFF8F8F8F)
 }
 
-// Data класс для CPU данных
 data class CPUData(
     val usage: Int,
     val temperature: Int
 )
 
-// CPU карточка компонент
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CPUCard(
@@ -52,7 +62,6 @@ fun CPUCard(
 
     ) {
         Row {
-            // Цветная полоска слева
             Box(
                 modifier = Modifier
                     .width(5.dp)
@@ -96,14 +105,14 @@ fun CPUCard(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "CPU",
+                    text = stringResource(R.string.metrics_card_label_cpu),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
 
                 Text(
-                    text = "Температура ${data.temperature}°C",
+                    text = stringResource(R.string.metrics_card_cpu_value) + ": ${data.temperature} " + stringResource(R.string.metrics_card_cpu_measure),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -112,15 +121,3 @@ fun CPUCard(
     }
 }
 
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun DeviceMainScreenPreview() {
-    ServariumTheme {
-        Scaffold { innerPadding ->
-
-            CPUCard(
-                CPUData(70, 80)
-            )
-        }
-    }
-}

@@ -9,18 +9,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import it.android.servarium.R
 import it.android.servarium.presentation.ui.theme.outlineVariantDark
 
-// Data класс для Docker данных
 data class DockerData(
     val runningContainers: Int,
     val totalContainers: Int
 )
 
-// Docker карточка компонент
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DockerCard(
@@ -37,7 +36,6 @@ fun DockerCard(
 
     ) {
         Row {
-            // Цветная полоска слева
             Box(
                 modifier = Modifier
                     .width(5.dp)
@@ -63,7 +61,7 @@ fun DockerCard(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Docker",
+                        text = stringResource(R.string.metrics_card_label_docker),
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface
@@ -73,7 +71,7 @@ fun DockerCard(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "${data.runningContainers}/${data.totalContainers} контейнеров",
+                    text = "${data.runningContainers}/${data.totalContainers} " + stringResource(R.string.metrics_card_docker_measure),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

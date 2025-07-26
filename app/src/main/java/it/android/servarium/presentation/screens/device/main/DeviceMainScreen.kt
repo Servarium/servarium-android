@@ -28,7 +28,6 @@ fun DeviceMainScreen(
     ) {
         Spacer(modifier = Modifier.height(20.dp))
         TopBar(
-
             onBackClick = onBackClick,
             onInfoClick = onInfoClick
         )
