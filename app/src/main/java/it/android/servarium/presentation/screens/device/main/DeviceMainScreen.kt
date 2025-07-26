@@ -26,7 +26,9 @@ fun DeviceMainScreen(
     Column(
         modifier = modifier.fillMaxSize()
     ) {
+        Spacer(modifier = Modifier.height(20.dp))
         TopBar(
+
             onBackClick = onBackClick,
             onInfoClick = onInfoClick
         )
@@ -34,7 +36,7 @@ fun DeviceMainScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 5.dp, vertical = 12.dp),
+                .padding(horizontal = 10.dp, vertical = 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Row(

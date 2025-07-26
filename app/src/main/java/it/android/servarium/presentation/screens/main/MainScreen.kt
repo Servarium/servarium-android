@@ -5,19 +5,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import it.android.servarium.R
 import it.android.servarium.data.PC
 import it.android.servarium.presentation.screens.main.components.CustomSnackbarWithTimer
 import it.android.servarium.presentation.screens.main.components.PcCard
+import it.android.servarium.presentation.screens.main.components.TopBar
 import it.android.servarium.presentation.ui.theme.ServariumTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,6 +51,7 @@ fun MainScreen(
                         deletedPcIds = deletedPcIds - pcId
                         pendingDeleteId = null
                     }
+
                     SnackbarResult.Dismissed -> {
                         onDeleteClick(pcId)
                         deletedPcIds = deletedPcIds - pcId
@@ -64,42 +63,24 @@ fun MainScreen(
     }
 
     Box(
+
         modifier = modifier.fillMaxSize()
     ) {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
+
+
             Column {
-                Spacer(modifier = Modifier.height(40.dp))
+                Spacer(modifier = Modifier.height(50.dp))
+                TopBar(
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    IconButton(onClick = {  }) {
+                )
 
-                    }
-                    Spacer(modifier = Modifier.weight(1f))
 
-                    Text(
-                        text = "Servarium",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    IconButton(onClick = {  }) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowForward,
-                            contentDescription = "Navigate",
-                            tint = MaterialTheme.colorScheme.onSurface,
-                            modifier = Modifier.size(20.dp)
-                        )
-                    }
-                }
+                Spacer(modifier = Modifier.height(0.dp))
+
 
                 LazyColumn(
                     modifier = Modifier
@@ -120,7 +101,7 @@ fun MainScreen(
         }
 
         FloatingActionButton(
-            onClick = {  },
+            onClick = { },
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(24.dp),
@@ -161,5 +142,6 @@ fun MainScreenPreview() {
             onDeleteClick = {},
             pcs = fakePcs
         )
+        
     }
 }
