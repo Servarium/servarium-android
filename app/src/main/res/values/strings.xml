@@ -14,4 +14,35 @@
 
     <string name="hide_password_description">Скрыть пароль</string>
     <string name="show_password_description">Показать пароль</string>
+
+    <!--cpu-->
+    <string name="metrics_card_label_cpu">CPU</string>
+    <string name="metrics_card_cpu_value">Температура </string>
+    <string name="metrics_card_cpu_measure">°C</string>
+
+    <!--ram-->
+    <string name="metrics_card_label_ram">RAM</string>
+    <string name="metrics_card_ram_value">Загружено</string>
+    <string name="metrics_card_ram_measure">GB</string>
+
+    <!--docker-->
+    <string name="metrics_card_label_docker">Docker</string>
+    <string name="metrics_card_docker_value">Docker</string>
+    <string name="metrics_card_docker_measure">Контейнеров</string>
+
+    <!--processes-->
+    <string name="metrics_card_label_processes">Процессы</string>
+
+    <!--network-->
+    <string name="metrics_card_label_network">Сеть</string>
+    <string name="metrics_card_network_value">Сеть</string>
+    <string name="metrics_card_network_measure">Сеть</string>
+
+    <!--disk-->
+    <string name="metrics_card_label_disk">Системный диск</string>
+
+
+
+
+
 </resources>
